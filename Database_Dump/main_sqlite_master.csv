@@ -1,0 +1,31 @@
+#,type,name,tbl_name,rootpage,sql
+1,table,__EFMigrationsHistory,__EFMigrationsHistory,2,"CREATE TABLE ""__EFMigrationsHistory"" (
+    ""MigrationId"" TEXT NOT NULL CONSTRAINT ""PK___EFMigrationsHistory"" PRIMARY KEY,
+    ""ProductVersion"" TEXT NOT NULL
+)"
+2,index,sqlite_autoindex___EFMigrationsHistory_1,__EFMigrationsHistory,3,
+3,table,Entries,Entries,4,"CREATE TABLE ""Entries"" (
+    ""Id"" TEXT NOT NULL CONSTRAINT ""PK_Entries"" PRIMARY KEY,
+    ""Name"" TEXT NOT NULL,
+    ""AgreeToTerms"" INTEGER NOT NULL
+)"
+4,index,sqlite_autoindex_Entries_1,Entries,5,
+5,table,Sectors,Sectors,6,"CREATE TABLE ""Sectors"" (
+    ""Id"" TEXT NOT NULL CONSTRAINT ""PK_Sectors"" PRIMARY KEY,
+    ""ParentId"" TEXT NULL,
+    ""Name"" TEXT NOT NULL,
+    ""Value"" TEXT NOT NULL,
+    CONSTRAINT ""FK_Sectors_Sectors_ParentId"" FOREIGN KEY (""ParentId"") REFERENCES ""Sectors"" (""Id"")
+)"
+6,index,sqlite_autoindex_Sectors_1,Sectors,7,
+7,table,EntrySectors,EntrySectors,8,"CREATE TABLE ""EntrySectors"" (
+    ""Id"" TEXT NOT NULL CONSTRAINT ""PK_EntrySectors"" PRIMARY KEY,
+    ""EntryId"" TEXT NOT NULL,
+    ""SectorId"" TEXT NOT NULL,
+    CONSTRAINT ""FK_EntrySectors_Entries_EntryId"" FOREIGN KEY (""EntryId"") REFERENCES ""Entries"" (""Id"") ON DELETE CASCADE,
+    CONSTRAINT ""FK_EntrySectors_Sectors_SectorId"" FOREIGN KEY (""SectorId"") REFERENCES ""Sectors"" (""Id"") ON DELETE CASCADE
+)"
+8,index,sqlite_autoindex_EntrySectors_1,EntrySectors,9,
+9,index,IX_EntrySectors_EntryId,EntrySectors,10,"CREATE INDEX ""IX_EntrySectors_EntryId"" ON ""EntrySectors"" (""EntryId"")"
+10,index,IX_EntrySectors_SectorId,EntrySectors,11,"CREATE INDEX ""IX_EntrySectors_SectorId"" ON ""EntrySectors"" (""SectorId"")"
+11,index,IX_Sectors_ParentId,Sectors,12,"CREATE INDEX ""IX_Sectors_ParentId"" ON ""Sectors"" (""ParentId"")"

@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Models.EntryModel
+
+@{
+    ViewData["Title"] = "Select sectors";
+}
+
+<div>
+    Edit your name and the Sectors you are currently involved in or close the browser window to save your current data.
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @* <form asp-action="Create"> *@
+        <form asp-controller="Entry" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SelectedSectors" class="control-label"></label>
+                <select multiple size="15" class="form-select col-6" asp-items="Model.AllSectors" asp-for="SelectedSectors"></select>
+                <span asp-validation-for="SelectedSectors" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AgreeToTerms" class="control-label"></label>
+                <input type="checkbox" lass="form-control" asp-for="AgreeToTerms">
+                <span asp-validation-for="AgreeToTerms" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit">Save changes</button>
+            </div>
+            <div>
+
+                <input type="hidden" asp-for="Id"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
