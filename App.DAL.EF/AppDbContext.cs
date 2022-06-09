@@ -1,6 +1,7 @@
+using App.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace App.Domain;
+namespace App.DAL.EF;
 
 public class AppDbContext : DbContext
 {

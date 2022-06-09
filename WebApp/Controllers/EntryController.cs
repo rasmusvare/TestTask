@@ -1,3 +1,4 @@
+using App.DAL.EF;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -179,6 +180,10 @@ public class EntryController : Controller
 
             return RedirectToAction(nameof(Edit), new {id = entry.Id});
         }
+
+        var sectors = await GetSectors();
+        entry.AllSectors = new SelectList(sectors, nameof(Sector.Id), nameof(Sector.Name));
+
 
         return View(entry);
     }
