@@ -8,6 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 		.gitignore = .gitignore
+		Database_Dump\main_sqlite_master.csv = Database_Dump\main_sqlite_master.csv
+		Database_Dump\main_Entries.csv = Database_Dump\main_Entries.csv
+		Database_Dump\main_EntrySectors.csv = Database_Dump\main_EntrySectors.csv
+		Database_Dump\main_Sectors.csv = Database_Dump\main_Sectors.csv
+		Database_Dump\main_EFMigrationsHistory.csv = Database_Dump\main_EFMigrationsHistory.csv
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.DAL.EF", "App.DAL.EF\App.DAL.EF.csproj", "{B555AE96-B505-434E-B47D-942A1C5D6F96}"
